@@ -1,4 +1,9 @@
-import { Component } from '@angular/core';
+import { partition } from 'rxjs/operator/partition';
+import { 
+    Component,
+    Output,
+    EventEmitter
+} from '@angular/core';
 
 @Component({
     selector: 'note-creator',
@@ -18,20 +23,23 @@ import { Component } from '@angular/core';
     `], 
     template: `
         <div class="note-creator shadow-2">
-            <form class="row">
+            <form 
+                class="row"
+                (submit)="onCreateNote()"
+            >
                 <input
-                type="text"
-                [(ngModel)]="newNote.title"
-                name="newNoteTitle"
-                placeholder="Title"
-                class="col-xs-10 title"
+                    type="text"
+                    [(ngModel)]="newNote.title"
+                    name="newNoteTitle"
+                    placeholder="Title"
+                    class="col-xs-10 title"
                 >
                 <input
-                type="text"
-                [(ngModel)]="newNote.value"
-                name="newNoteValue"
-                placeholder="Take a note..."
-                class="col-xs-10"
+                    type="text"
+                    [(ngModel)]="newNote.value"
+                    name="newNoteValue"
+                    placeholder="Take a note..."
+                    class="col-xs-10"
                 >
                 <div class="actions col-xs-12 row between-xs">
                 <button
@@ -47,8 +55,27 @@ import { Component } from '@angular/core';
     `
 })
 export class NoteCreator {
-    newNote = {
+    @Output() createNote = new EventEmitter();
+
+     newNote = {
         title: '',
         value: ''
+    }
+
+    onCreateNote(){
+        const { title, value } = this.newNote;
+
+        if(title && value){
+            this.createNote.next({title, value})
+        }
+
+        this.reset();
+    }
+
+    reset(){
+        this.newNote = {
+            title: '',
+            value: ''
+        }
     }
 };
