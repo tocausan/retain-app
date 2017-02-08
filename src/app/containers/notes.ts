@@ -35,9 +35,9 @@ import { Component } from '@angular/core';
 })
 export class NotesContainer {
     notes = [
-        {title: 'Chores', value: 'Don\'t forget to clean up', color: 'lightblue'},
-        {title: 'Cook', value: 'Cook your food', color: 'red'},
-        {title: 'Doggy', value: 'Walk the dog', color: 'yellow'},
+        {title: 'Chores', value: 'Don\'t forget to clean up', color: 'rgb(255, 138, 128)'},
+        {title: 'Cook', value: 'Cook your food', color: 'rgb(255, 209, 128)'},
+        {title: 'Doggy', value: 'Walk the dog', color: 'rgb(255, 255, 141)'},
     ]
 
     onNoteChecked(i: number){

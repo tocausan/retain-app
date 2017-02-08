@@ -1,3 +1,4 @@
+import { ColorPicker } from './color-picker';
 import { NgIf } from '@angular/common/src/directives/ng_if';
 import { partition } from 'rxjs/operator/partition';
 import { 
@@ -23,7 +24,10 @@ import {
         }
     `], 
     template: `
-        <div class="note-creator shadow-2">
+        <div 
+            class="note-creator shadow-2"
+            [ngStyle]="{'background-color': newNote.color}"
+        >
             <form 
                 class="row"
                 (submit)="onCreateNote()"
@@ -44,10 +48,17 @@ import {
                     placeholder="Take a note..."
                     class="col-xs-10"
                 >
+                <pre>{{newNote | json}}</pre>
                 <div 
                     class="actions col-xs-12 row between-xs"
                     *ngIf="fullForm"
-                >
+                > 
+                <div class="col-xs-3">
+                    <color-picker
+                        [colors]="colors"
+                        (selected)="onColorSelect($event)"
+                    ></color-picker>
+                </div>
                 <button
                     type="submit"
                     class="btn-light"
@@ -62,31 +73,46 @@ import {
 export class NoteCreator {
     @Output() createNote = new EventEmitter();
 
-     newNote = {
+    colors: string[] = [
+        'rgb(255, 138, 128)', 
+        'rgb(255, 209, 128)', 
+        'rgb(255, 255, 141)', 
+        'rgb(207, 216, 220)', 
+        'rgb(128, 216, 255)', 
+        'rgb(167, 255, 235)', 
+        'rgb(204, 255, 144)' 
+    ];
+
+    newNote = {
         title: '',
-        value: ''
+        value: '',
+        color: 'white'
     };
     fullForm: boolean = false;
 
     onCreateNote(){
-        const { title, value } = this.newNote;
+        const { title, value, color } = this.newNote;
 
-        if(title && value){
-            this.createNote.next({title, value})
+        if(title && value && color){
+            this.createNote.next({title, value, color})
+            this.reset();
+            this.toggle(false);    
         }
-
-        this.reset();
-        this.toggle(false);
     }
 
     reset(){
         this.newNote = {
             title: '',
-            value: ''
+            value: '',
+            color: 'white'
         }
     }
 
     toggle(value: boolean){
         this.fullForm = value;
+    }
+
+    onColorSelect(color: string){
+        this.newNote.color = color;
     }
 };

@@ -46,6 +46,7 @@ import {
         (mouseleave)="toggleCheck()"
         (mouseenter)="toggleCheck()"
     >
+    <pre>{{note|json}}</pre>
         <div 
             class="icon" 
             (click)="onChecked()"
