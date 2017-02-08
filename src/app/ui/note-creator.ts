@@ -1,3 +1,4 @@
+import { NgIf } from '@angular/common/src/directives/ng_if';
 import { partition } from 'rxjs/operator/partition';
 import { 
     Component,
@@ -33,15 +34,20 @@ import {
                     name="newNoteTitle"
                     placeholder="Title"
                     class="col-xs-10 title"
+                    *ngIf="fullForm"
                 >
                 <input
                     type="text"
+                    (focus)="toggle(true)"
                     [(ngModel)]="newNote.value"
                     name="newNoteValue"
                     placeholder="Take a note..."
                     class="col-xs-10"
                 >
-                <div class="actions col-xs-12 row between-xs">
+                <div 
+                    class="actions col-xs-12 row between-xs"
+                    *ngIf="fullForm"
+                >
                 <button
                     type="submit"
                     class="btn-light"
@@ -50,7 +56,6 @@ import {
                 </button>
                 </div>
             </form>
-            <pre>{{ newNote | json }}</pre>
         </div>
     `
 })
@@ -60,7 +65,8 @@ export class NoteCreator {
      newNote = {
         title: '',
         value: ''
-    }
+    };
+    fullForm: boolean = false;
 
     onCreateNote(){
         const { title, value } = this.newNote;
@@ -70,6 +76,7 @@ export class NoteCreator {
         }
 
         this.reset();
+        this.toggle(false);
     }
 
     reset(){
@@ -77,5 +84,9 @@ export class NoteCreator {
             title: '',
             value: ''
         }
+    }
+
+    toggle(value: boolean){
+        this.fullForm = value;
     }
 };
