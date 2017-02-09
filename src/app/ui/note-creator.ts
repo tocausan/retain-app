@@ -48,7 +48,6 @@ import {
                     placeholder="Take a note..."
                     class="col-xs-10"
                 >
-                <pre>{{newNote | json}}</pre>
                 <div 
                     class="actions col-xs-12 row between-xs"
                     *ngIf="fullForm"

@@ -2,8 +2,12 @@ import { formatMessageChain } from 'awesome-typescript-loader/dist/helpers';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { App } from './app/app';
+import { 
+    App,
+    providers
+} from './app';
 import { 
     Main, 
     NotesContainer 
@@ -25,9 +29,11 @@ import {
         NoteCreator,
         ColorPicker
     ],
+    providers,
     imports: [
         BrowserModule, 
-        FormsModule
+        FormsModule,
+        HttpModule
     ],
     bootstrap: [App]
 })
