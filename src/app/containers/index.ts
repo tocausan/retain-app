@@ -1,3 +1,3 @@
 export { Main } from './main';
-export { NotesContainer } from './notes';
+export { Notes } from './notes';
 export { About } from './about';

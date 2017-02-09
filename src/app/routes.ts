@@ -1,13 +1,13 @@
 import { RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
-import { Main, NotesContainer, About } from './containers';
+import { Main, Notes, About } from './containers';
 
 export const routes: ModuleWithProviders = RouterModule.forRoot([
     {
         path: '',
         component: Main,
         children: [
-            { path: '', component: NotesContainer },
+            { path: '', component: Notes },
             { path: 'about', component: About }
         ]
     },
