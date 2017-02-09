@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { 
     Headers, 
     Http, 
@@ -37,7 +37,7 @@ export class ApiService {
     }
 
     get(path: string): Observable<any>{
-        return this.http.get('${this.api_url}${path}', this.headers)
+        return this.http.get(`${this.api_url}${path}`, this.headers)
             .map(this.checkForError)
             .catch(err => Observable.throw(err))
             .map(this.getJson)
@@ -45,7 +45,7 @@ export class ApiService {
 
     post(path: string, body): Observable<any>{
         return this.http.post(
-            '${this.api_url}${path}',
+            `${this.api_url}${path}`,
             JSON.stringify(body),
             {headers: this.headers}
         )
@@ -55,7 +55,7 @@ export class ApiService {
     }
 
     delete(path: string): Observable<any>{
-        return this.http.delete('${this.api_url}${path}', this.headers)
+        return this.http.delete(`${this.api_url}${path}`, this.headers)
             .map(this.checkForError)
             .catch(err => Observable.throw(err))
             .map(this.getJson)
