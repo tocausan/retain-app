@@ -3,21 +3,27 @@ import { Injectable } from '@angular/core';
 import 'rxjs/Rx';
 
 export interface Note {
-    color: string
-    title: string
-    value: string
-    id?: string | number
-    createdAt?: string
-    updatedAt?: string
+    color: string,
+    title: string,
+    value: string,
+    id?: string | number,
+    createdAt?: string,
+    updatedAt?: string,
     userId?: string
 };
 
+export interface User {
+    id: string
+};
+
 export interface State {
-    notes: Note[]
+    notes: Note[],
+    user: User
 };
 
 const defaultState: State = {
-    notes: []
+    notes: [],
+    user: {id: ''}
 };
 
 const _store = new BehaviorSubject<State>(defaultState);

@@ -60,4 +60,9 @@ export class ApiService {
             .catch(err => Observable.throw(err))
             .map(this.getJson)
     }
+
+    setHeaders(headers){
+        Object.keys(headers)
+            .forEach(header => this.headers.set(header, headers[header]));
+    }
 };
