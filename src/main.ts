@@ -4,20 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { 
-    App,
-    providers
-} from './app';
-import { 
-    Main, 
-    NotesContainer 
-} from './app/containers';
-import { 
-    AppBar, 
-    NoteCard, 
-    NoteCreator, 
-    ColorPicker 
-} from './app/ui'
+import { App, providers, routes } from './app';
+import { Main, NotesContainer ,About } from './app/containers';
+import { AppBar, NoteCard, NoteCreator, ColorPicker } from './app/ui'
 
 @NgModule({
     declarations: [
@@ -27,13 +16,15 @@ import {
         NoteCard,
         NotesContainer,
         NoteCreator,
-        ColorPicker
+        ColorPicker,
+        About
     ],
     providers,
     imports: [
         BrowserModule, 
         FormsModule,
-        HttpModule
+        HttpModule,
+        routes
     ],
     bootstrap: [App]
 })

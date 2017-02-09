@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
     template: `
         <div>
             <main class="main">
-                <notes-container></notes-container>
+                <router-outlet></router-outlet>
             </main>
         </div>
     `
