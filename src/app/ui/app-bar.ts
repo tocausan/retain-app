@@ -22,25 +22,25 @@ import { Component } from '@angular/core';
         }
     `],
     template: `
-    <header class="app-bar row middle-xs">
-        <span 
-            [routerLink]="['']"
-            class="logo col-xs-10"
-        >
-            Retain
-        </span>
-        <nav class="col-xs-2">
-            <div class="row middle-xs between-xs">
+        <header class="app-bar row middle-xs">
             <span 
-                [routerLink]="['', 'about']"
-                class="link"
+                [routerLink]="['']"
+                class="logo col-xs-10"
             >
-            About
+                Retain
             </span>
-            <span class="link">signout</span>
-            </div>
-        </nav>
-    </header>
-    `
+            <nav class="col-xs-2">
+                <div class="row middle-xs between-xs">
+                <span 
+                    [routerLink]="['', 'about']"
+                    class="link"
+                >
+                About
+                </span>
+                <span class="link">signout</span>
+                </div>
+            </nav>
+        </header>
+        `
 })
 export class AppBar {};
