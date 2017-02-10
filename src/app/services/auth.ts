@@ -41,7 +41,7 @@ export class AuthService implements CanActivate {
 
     onCanActivate(canActivate: boolean){
         if(!canActivate){
-            this.route.navigate(['', 'auth']);
+            this.router.navigate(['', 'auth']);
         }
     }
 
